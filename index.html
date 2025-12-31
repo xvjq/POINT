@@ -5,17 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUSTY-POINT - Premium Video Collection</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- React and ReactDOM from CDN -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
-    <!-- Babel Standalone for JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
@@ -63,17 +59,15 @@
             background: #555;
         }
 
-        /* Dark mode styles */
         .dark {
             background-color: #0f0f10;
             color: #f1f1f1;
         }
 
-        /* Modal backdrop */
         .modal-backdrop {
             position: fixed;
             inset: 0;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.75);
             z-index: 50;
             display: flex;
             align-items: center;
@@ -106,7 +100,6 @@
             to { transform: scale(1); opacity: 1; }
         }
 
-        /* Toast notification */
         .toast {
             position: fixed;
             bottom: 2rem;
@@ -131,7 +124,6 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Button styles */
         .btn {
             padding: 0.5rem 1rem;
             border-radius: 0.375rem;
@@ -168,10 +160,6 @@
             color: #f9fafb;
         }
 
-        .dark .btn-secondary:hover {
-            background-color: #4b5563;
-        }
-
         .btn-ghost {
             background-color: transparent;
             color: #6b7280;
@@ -200,11 +188,6 @@
             color: #f9fafb;
         }
 
-        .dark .btn-outline:hover {
-            background-color: #374151;
-        }
-
-        /* Card styles */
         .card {
             background: white;
             border-radius: 0.5rem;
@@ -222,7 +205,6 @@
             border-color: #374151;
         }
 
-        /* Input styles */
         .input {
             width: 100%;
             padding: 0.625rem 0.75rem;
@@ -237,11 +219,6 @@
             border-color: #374151;
             color: #f9fafb;
         }
-
-        .input:focus {
-            outline: none;
-            border-color: #3b82f6;
-        }
     </style>
 </head>
 <body>
@@ -250,7 +227,6 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // Mock Data
         const mockVideos = [
             {
                 id: 1,
@@ -275,50 +251,9 @@
                 thumbnail: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&h=600&fit=crop",
                 videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
                 revealed: false
-            },
-            {
-                id: 4,
-                title: "College Campus Leaked Content",
-                date: "2025-10-15",
-                thumbnail: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=800&h=600&fit=crop",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                revealed: false
-            },
-            {
-                id: 5,
-                title: "Private Video Collection 2025",
-                date: "2025-11-08",
-                thumbnail: "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?w=800&h=600&fit=crop",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                revealed: false
-            },
-            {
-                id: 6,
-                title: "Exclusive Behind The Scenes",
-                date: "2025-09-22",
-                thumbnail: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&h=600&fit=crop",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                revealed: false
-            },
-            {
-                id: 7,
-                title: "Trending Now - Must Watch",
-                date: "2025-11-10",
-                thumbnail: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&h=600&fit=crop",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                revealed: false
-            },
-            {
-                id: 8,
-                title: "Premium Collection Vol. 3",
-                date: "2025-10-30",
-                thumbnail: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&h=600&fit=crop",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                revealed: false
             }
         ];
 
-        // Toast Component
         const Toast = ({ message, onClose }) => {
             useEffect(() => {
                 const timer = setTimeout(onClose, 5000);
@@ -333,191 +268,87 @@
             );
         };
 
-        // Header Component
-        const Header = ({ theme, toggleTheme, toggleMenu }) => {
-            return (
-                <header className="sticky top-0 z-40 w-full border-b bg-white dark:bg-gray-900" style={{ borderColor: theme === 'dark' ? '#374151' : '#e5e7eb' }}>
-                    <div className="container mx-auto flex h-16 items-center justify-between px-4">
-                        <div className="flex items-center gap-2">
-                            <div className="flex items-center gap-2 font-bold text-xl">
-                                <div className="bg-blue-600 rounded-full p-1.5">
-                                    <i data-lucide="play" className="w-5 h-5 text-white"></i>
-                                </div>
-                                <span style={{ background: 'linear-gradient(to right, #3b82f6, #2563eb)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                                    LUSTY-POINT
-                                </span>
-                            </div>
+        const Header = ({ theme, toggleTheme }) => (
+            <header className="sticky top-0 z-40 w-full border-b bg-white dark:bg-gray-900" style={{ borderColor: theme === 'dark' ? '#374151' : '#e5e7eb' }}>
+                <div className="container mx-auto flex h-16 items-center justify-between px-4">
+                    <div className="flex items-center gap-2 font-bold text-xl">
+                        <div className="bg-blue-600 rounded-full p-1.5">
+                            <i data-lucide="play" className="w-5 h-5 text-white"></i>
                         </div>
-
-                        <div className="flex items-center gap-2">
-                            <button onClick={toggleTheme} className="btn btn-ghost rounded-full p-2">
-                                {theme === 'dark' ? 
-                                    <i data-lucide="sun" className="w-5 h-5"></i> : 
-                                    <i data-lucide="moon" className="w-5 h-5"></i>
-                                }
-                            </button>
-                            <button onClick={toggleMenu} className="btn btn-ghost rounded-full p-2">
-                                <i data-lucide="menu" className="w-5 h-5"></i>
-                            </button>
-                        </div>
+                        <span style={{ background: 'linear-gradient(to right, #3b82f6, #2563eb)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                            LUSTY-POINT
+                        </span>
                     </div>
-                </header>
-            );
-        };
+                    <button onClick={toggleTheme} className="btn btn-ghost rounded-full p-2">
+                        {theme === 'dark' ? <i data-lucide="sun" className="w-5 h-5"></i> : <i data-lucide="moon" className="w-5 h-5"></i>}
+                    </button>
+                </div>
+            </header>
+        );
 
-        // SearchBar Component
-        const SearchBar = ({ searchTerm, setSearchTerm, viewMode, setViewMode, sortOrder, setSortOrder }) => {
-            return (
-                <div className="w-full py-6 px-4">
-                    <div className="container mx-auto">
-                        <div className="flex flex-col md:flex-row gap-4 items-center">
-                            <div className="relative flex-1 w-full">
-                                <i data-lucide="search" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"></i>
-                                <input
-                                    type="text"
-                                    placeholder="Search videos..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="input pl-10"
-                                    style={{ height: '2.75rem' }}
-                                />
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                                <div className="flex border rounded-lg" style={{ borderColor: '#e5e7eb' }}>
-                                    <button
-                                        onClick={() => setViewMode('grid')}
-                                        className={`btn p-2 rounded-r-none ${viewMode === 'grid' ? 'bg-blue-600 text-white hover:bg-blue-700' : 'btn-ghost'}`}
-                                    >
-                                        <i data-lucide="grid-3x3" className="w-4 h-4"></i>
-                                    </button>
-                                    <button
-                                        onClick={() => setViewMode('list')}
-                                        className={`btn p-2 rounded-l-none ${viewMode === 'list' ? 'bg-blue-600 text-white hover:bg-blue-700' : 'btn-ghost'}`}
-                                    >
-                                        <i data-lucide="list" className="w-4 h-4"></i>
-                                    </button>
-                                </div>
-
-                                <select 
-                                    value={sortOrder} 
-                                    onChange={(e) => setSortOrder(e.target.value)}
-                                    className="input"
-                                    style={{ height: '2.75rem', width: '160px' }}
-                                >
-                                    <option value="newest">Newest First</option>
-                                    <option value="oldest">Oldest First</option>
-                                </select>
-                            </div>
+        const SearchBar = ({ searchTerm, setSearchTerm, viewMode, setViewMode, sortOrder, setSortOrder }) => (
+            <div className="w-full py-6 px-4">
+                <div className="container mx-auto flex flex-col md:flex-row gap-4 items-center">
+                    <div className="relative flex-1 w-full">
+                        <i data-lucide="search" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+                        <input
+                            type="text"
+                            placeholder="Search videos..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="input pl-10 h-11"
+                        />
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <div className="flex border rounded-lg overflow-hidden border-gray-200 dark:border-gray-700">
+                            <button onClick={() => setViewMode('grid')} className={`p-2.5 ${viewMode === 'grid' ? 'bg-blue-600 text-white' : 'bg-transparent text-gray-500'}`}>
+                                <i data-lucide="grid-3x3" className="w-4 h-4"></i>
+                            </button>
+                            <button onClick={() => setViewMode('list')} className={`p-2.5 ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'bg-transparent text-gray-500'}`}>
+                                <i data-lucide="list" className="w-4 h-4"></i>
+                            </button>
                         </div>
+                        <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)} className="input h-11 w-40">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                        </select>
                     </div>
                 </div>
-            );
-        };
+            </div>
+        );
 
-        // VideoCard Component
         const VideoCard = ({ video, onWatchClick, viewMode }) => {
             const [isRevealed, setIsRevealed] = useState(false);
-
-            const handleReveal = () => {
-                setIsRevealed(true);
-            };
-
-            const handleShare = () => {
-                if (navigator.share) {
-                    navigator.share({
-                        title: video.title,
-                        text: `Check out this video: ${video.title}`,
-                        url: window.location.href,
-                    });
-                } else {
-                    navigator.clipboard.writeText(window.location.href);
-                    alert('Link copied to clipboard!');
-                }
-            };
-
-            const formatDate = (dateString) => {
-                const date = new Date(dateString);
-                return date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
-            };
-
-            if (viewMode === 'list') {
-                return (
-                    <div className="card mb-4">
-                        <div className="flex flex-col sm:flex-row gap-4 p-4">
-                            <div className="relative w-full sm:w-48 h-36 flex-shrink-0 rounded-lg overflow-hidden">
-                                <img
-                                    src={video.thumbnail}
-                                    alt={video.title}
-                                    className="w-full h-full object-cover transition-all duration-500"
-                                    style={{ filter: isRevealed ? 'blur(0)' : 'blur(40px)' }}
-                                />
-                                {!isRevealed && (
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <button onClick={handleReveal} className="btn btn-secondary shadow-lg">
-                                            <i data-lucide="eye" className="w-4 h-4"></i>
-                                            Click to Reveal
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="flex-1 flex flex-col justify-between">
-                                <div>
-                                    <h3 className="font-semibold text-lg mb-2">{video.title}</h3>
-                                    <div className="flex items-center gap-2 text-sm text-gray-500">
-                                        <i data-lucide="calendar" className="w-4 h-4"></i>
-                                        <span>{formatDate(video.date)}</span>
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-2 mt-4">
-                                    <button onClick={() => onWatchClick(video)} className="btn btn-primary flex-1">
-                                        Watch Now
-                                    </button>
-                                    <button onClick={handleShare} className="btn btn-outline p-2">
-                                        <i data-lucide="share-2" className="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                );
-            }
+            const formatDate = (d) => new Date(d).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
 
             return (
-                <div className="card">
-                    <div className="relative overflow-hidden rounded-t-lg" style={{ aspectRatio: '16/9' }}>
+                <div className={`card ${viewMode === 'list' ? 'flex flex-col sm:flex-row gap-4 p-4 mb-4' : ''}`}>
+                    <div className={`relative overflow-hidden rounded-lg ${viewMode === 'list' ? 'w-full sm:w-48 h-36 flex-shrink-0' : 'aspect-video'}`}>
                         <img
                             src={video.thumbnail}
                             alt={video.title}
-                            className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
+                            className="w-full h-full object-cover transition-all duration-500"
                             style={{ filter: isRevealed ? 'blur(0)' : 'blur(40px)' }}
                         />
                         {!isRevealed && (
-                            <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'rgba(0,0,0,0.1)' }}>
-                                <button onClick={handleReveal} className="btn btn-secondary shadow-lg">
-                                    <i data-lucide="eye" className="w-4 h-4"></i>
-                                    Click to Reveal
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/10">
+                                <button onClick={() => setIsRevealed(true)} className="btn btn-secondary shadow-lg">
+                                    <i data-lucide="eye" className="w-4 h-4"></i> Reveal
                                 </button>
                             </div>
                         )}
                     </div>
-
-                    <div className="p-4">
-                        <h3 className="font-semibold text-base mb-2 line-clamp-2">{video.title}</h3>
-                        
-                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
-                            <i data-lucide="calendar" className="w-4 h-4"></i>
-                            <span>{formatDate(video.date)}</span>
+                    <div className="p-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 className="font-semibold text-lg mb-2 line-clamp-2">{video.title}</h3>
+                            <div className="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="calendar" className="w-4 h-4"></i>
+                                <span>{formatDate(video.date)}</span>
+                            </div>
                         </div>
-
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 mt-4">
                             <button onClick={() => onWatchClick(video)} className="btn btn-primary flex-1">
                                 Watch Now
-                            </button>
-                            <button onClick={handleShare} className="btn btn-outline p-2">
-                                <i data-lucide="share-2" className="w-4 h-4"></i>
                             </button>
                         </div>
                     </div>
@@ -525,34 +356,23 @@
             );
         };
 
-        // VideoPlayer Modal Component
         const VideoPlayer = ({ video, isOpen, onClose }) => {
             if (!isOpen || !video) return null;
-
             return (
                 <div className="modal-backdrop" onClick={onClose}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-xl font-semibold">{video.title}</h2>
-                            <button onClick={onClose} className="btn btn-ghost p-2">
-                                <i data-lucide="x" className="w-5 h-5"></i>
-                            </button>
+                            <button onClick={onClose} className="btn btn-ghost p-2"><i data-lucide="x" className="w-5 h-5"></i></button>
                         </div>
-                        <div className="w-full bg-black rounded-lg overflow-hidden" style={{ aspectRatio: '16/9' }}>
-                            <iframe
-                                src={video.videoUrl}
-                                className="w-full h-full"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                title={video.title}
-                            />
+                        <div className="w-full bg-black rounded-lg overflow-hidden aspect-video">
+                            <iframe src={video.videoUrl} className="w-full h-full" allowFullScreen />
                         </div>
                     </div>
                 </div>
             );
         };
 
-        // Main App Component
         const App = () => {
             const [theme, setTheme] = useState('light');
             const [searchTerm, setSearchTerm] = useState('');
@@ -560,26 +380,17 @@
             const [sortOrder, setSortOrder] = useState('newest');
             const [selectedVideo, setSelectedVideo] = useState(null);
             const [isPlayerOpen, setIsPlayerOpen] = useState(false);
-            const [videos] = useState(mockVideos);
             const [toast, setToast] = useState(null);
 
             useEffect(() => {
-                // Check for saved theme preference
-                const savedTheme = localStorage.getItem('theme') || 'light';
-                setTheme(savedTheme);
-                document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-
-                // Initialize Lucide icons
+                const saved = localStorage.getItem('theme') || 'light';
+                setTheme(saved);
+                document.documentElement.classList.toggle('dark', saved === 'dark');
                 lucide.createIcons();
-
-                // Show welcome toast
-                setToast({ title: 'Welcome to LUSTY-POINT! 📹', description: 'Explore premium videos.' });
+                setToast({ title: 'Welcome! 📹', description: 'Explore premium videos.' });
             }, []);
 
-            useEffect(() => {
-                // Update Lucide icons when component updates
-                lucide.createIcons();
-            });
+            useEffect(() => { lucide.createIcons(); });
 
             const toggleTheme = () => {
                 const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -588,77 +399,38 @@
                 document.documentElement.classList.toggle('dark', newTheme === 'dark');
             };
 
-            const toggleMenu = () => {
-                setToast({ title: 'Menu', description: 'Menu functionality coming soon!' });
-            };
-
             const handleWatchClick = (video) => {
-                setSelectedVideo(video);
-                setIsPlayerOpen(true);
+                // FIXED: Check if it's a Telegram link and open in new tab
+                if (video.videoUrl.includes('t.me')) {
+                    window.open(video.videoUrl, '_blank');
+                } else {
+                    setSelectedVideo(video);
+                    setIsPlayerOpen(true);
+                }
             };
 
-            const handleClosePlayer = () => {
-                setIsPlayerOpen(false);
-                setTimeout(() => setSelectedVideo(null), 300);
-            };
-
-            // Filter and sort videos
-            const filteredVideos = videos
-                .filter((video) =>
-                    video.title.toLowerCase().includes(searchTerm.toLowerCase())
-                )
-                .sort((a, b) => {
-                    const dateA = new Date(a.date);
-                    const dateB = new Date(b.date);
-                    return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
-                });
+            const filteredVideos = mockVideos
+                .filter(v => v.title.toLowerCase().includes(searchTerm.toLowerCase()))
+                .sort((a, b) => sortOrder === 'newest' ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date));
 
             return (
                 <div className="App min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-                    <Header theme={theme} toggleTheme={toggleTheme} toggleMenu={toggleMenu} />
-                    <SearchBar
-                        searchTerm={searchTerm}
-                        setSearchTerm={setSearchTerm}
-                        viewMode={viewMode}
-                        setViewMode={setViewMode}
-                        sortOrder={sortOrder}
-                        setSortOrder={setSortOrder}
-                    />
-
+                    <Header theme={theme} toggleTheme={toggleTheme} />
+                    <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} viewMode={viewMode} setViewMode={setViewMode} sortOrder={sortOrder} setSortOrder={setSortOrder} />
                     <div className="container mx-auto px-4 pb-12">
-                        {filteredVideos.length === 0 ? (
-                            <div className="text-center py-20">
-                                <p className="text-gray-500 text-lg">No videos found</p>
-                            </div>
-                        ) : (
-                            <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'flex flex-col'}>
-                                {filteredVideos.map((video) => (
-                                    <VideoCard
-                                        key={video.id}
-                                        video={video}
-                                        onWatchClick={handleWatchClick}
-                                        viewMode={viewMode}
-                                    />
-                                ))}
-                            </div>
-                        )}
+                        <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'flex flex-col'}>
+                            {filteredVideos.map(v => <VideoCard key={v.id} video={v} onWatchClick={handleWatchClick} viewMode={viewMode} />)}
+                        </div>
                     </div>
-
-                    <VideoPlayer
-                        video={selectedVideo}
-                        isOpen={isPlayerOpen}
-                        onClose={handleClosePlayer}
-                    />
-
+                    <VideoPlayer video={selectedVideo} isOpen={isPlayerOpen} onClose={() => setIsPlayerOpen(false)} />
                     {toast && <Toast message={toast} onClose={() => setToast(null)} />}
                 </div>
             );
         };
 
-        // Render the app
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
 </body>
 </html>
- 
+
